@@ -3,12 +3,17 @@
     <div class="day-banner has-text-centered">{{ day.abbvTitle }}</div>
     <div class="day-details">
       <div class="day-number">{{ day.id }}</div>
-      <div class="day-event" style="background-color: rgb(153, 255, 153)">
+      <div
+        v-for="event in day.events"
+        :key="event"
+        class="day-event"
+        :style="getEventBackgroundColor"
+      >
         <div>
-          <span class="has-text-centered details">Get Groceries</span>
+          <span class="has-text-centered details">{{ event.details }}</span>
           <div class="has-text-centered icons">
-            <i class="fa fa-pencil-square edit-icon"></i>
-            <i class="fa fa-trash-o delete-icon"></i>
+            <i class="fas fa-edit"></i>
+            <i class="fa fa-trash"></i>
           </div>
         </div>
       </div>
@@ -19,7 +24,14 @@
 <script>
 export default {
   name: "CalenderDay",
-  props: ["day"]
+  props: ["day"],
+  computed: {
+    getEventBackgroundColor() {
+      const colors = ["#FF9999", "#85D6FF", "#99FF99"];
+      let randomColor = colors[Math.floor(Math.random() * colors.length)];
+      return `background-color: ${randomColor}`;
+    }
+  }
 };
 </script>
 
@@ -59,7 +71,7 @@ export default {
       display: block;
     }
     .icons .fa {
-      padding: 0 2px;
+      padding: 0 4px;
     }
     input {
       background: none;
