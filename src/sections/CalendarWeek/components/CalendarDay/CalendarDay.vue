@@ -1,11 +1,11 @@
 <template>
-  <div class="day column">
+  <div class="day column" @click="() => setActive(day.id)">
     <div class="day-banner has-text-centered">{{ day.abbvTitle }}</div>
     <div class="day-details">
       <div class="day-number">{{ day.id }}</div>
       <div
-        v-for="event in day.events"
-        :key="event"
+        v-for="(event, idx) in day.events"
+        :key="idx"
         class="day-event"
         :style="getEventBackgroundColor"
       >
@@ -22,9 +22,16 @@
 </template>
 
 <script>
+import { store } from "../../../../store";
+
 export default {
   name: "CalenderDay",
   props: ["day"],
+  methods: {
+    setActive(id) {
+      store.setActive(id);
+    }
+  },
   computed: {
     getEventBackgroundColor() {
       const colors = ["#FF9999", "#85D6FF", "#99FF99"];
