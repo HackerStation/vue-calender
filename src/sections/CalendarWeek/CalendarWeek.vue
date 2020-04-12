@@ -1,5 +1,5 @@
 <template>
-  <div id="calendar-week" class="container">
+  <div id="calendar-week">
     <!-- Markup for calendar week -->
     <div class="columns is-mobile">
       <CalendarDay v-for="day in sharedState.seedData" :key="day.id" :day="day" />
@@ -22,11 +22,11 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 #calendar-week {
   margin-bottom: 50px;
-}
-#calendar-week .columns {
-  padding: 0 0 0 0;
+  .columns {
+    padding: 0 0 0 0;
+  }
 }
 </style>

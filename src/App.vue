@@ -1,18 +1,24 @@
 <template>
   <div id="app">
-    <!-- <CalendarEntry /> -->
-    <CalendarWeek />
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <CalendarWeek />
+          <CalendarEntry />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// import CalendarEntry from "./sections/CalendarEntry/CalendarEntry";
+import CalendarEntry from "./sections/CalendarEntry/CalendarEntry";
 import CalendarWeek from "./sections/CalendarWeek/CalendarWeek";
 
 export default {
   name: "App",
   components: {
-    // CalendarEntry,
+    CalendarEntry,
     CalendarWeek
   }
 };
@@ -21,19 +27,14 @@ export default {
 <style>
 html,
 body {
-  height: 100%;
+  height: 100vh;
 }
 </style>
 
-<style scoped>
+<style lang='scss' scoped>
 #app {
   height: inherit;
   background: #6e6e6e;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  -webkit-align-items: center;
-  justify-content: center;
-  -webkit-justify-content: center;
+  padding-top: 18%;
 }
 </style>
