@@ -1,0 +1,32 @@
+<template>
+  <div id="calendar-week" class="container">
+    <!-- Markup for calendar week -->
+    <div class="columns is-mobile">
+      <CalendarDay v-for="day in sharedState.seedData" :key="day.id" :day="day" />
+    </div>
+  </div>
+</template>
+<script>
+import { store } from "../../store";
+import CalendarDay from "./components/CalendarDay/CalendarDay";
+
+export default {
+  name: "CalendarWeek",
+  data() {
+    return {
+      sharedState: store.state
+    };
+  },
+  components: {
+    CalendarDay
+  }
+};
+</script>
+<style scoped>
+#calendar-week {
+  margin-bottom: 50px;
+}
+#calendar-week .columns {
+  padding: 0 0 0 0;
+}
+</style>
