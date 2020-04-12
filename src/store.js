@@ -3,7 +3,10 @@ export const store = {
   state: {
     seedData
   },
-  setActive(id) {
+  getActiveDay() {
+    return this.state.seedData.filter(day => day.active)[0].fullTitle;
+  },
+  setActiveDay(id) {
     this.state.seedData.forEach(day => {
       if (day.id === id) {
         day.active = true;
@@ -19,7 +22,32 @@ export const store = {
       }
     });
   },
-  getActiveDay() {
-    return this.state.seedData.filter(day => day.active)[0].fullTitle;
+  editEvent(id, idx) {
+    this.state.seedData.forEach(day => {
+      if (day.id === id) {
+        day.events[idx].edit = true;
+      }
+    });
+  },
+  cancelEditEvent(id, idx) {
+    this.state.seedData.forEach(day => {
+      if (day.id === id) {
+        day.events[idx].edit = false;
+      }
+    });
+  },
+  confirmEditEvent(eventDetails, id, idx) {
+    this.state.seedData.forEach(day => {
+      if (day.id === id) {
+        day.events[idx].details = eventDetails;
+      }
+    });
+  },
+  deleteEvent(id, idx) {
+    this.state.seedData.forEach(day => {
+      if (day.id === id) {
+        day.events.splice(idx, 1);
+      }
+    });
   }
 };
