@@ -1,12 +1,12 @@
 <template>
   <div id="calendar-entry">
     <div class="calendar-entry-note">
-      <input type="text" placeholder="New Event" />
+      <input type="text" placeholder="New Event" v-model.trim="event.details" />
       <p class="calendar-entry-day">
         Day of event:
         <span class="bold">{{ getActiveDay() }}</span>
       </p>
-      <a class="button is-primary is-small is-outlined">Submit</a>
+      <a class="button is-primary is-small is-outlined" @click="onEventSubmit">Submit</a>
     </div>
   </div>
 </template>
@@ -16,10 +16,24 @@ import { store } from "../../store";
 
 export default {
   name: "CalenderEntry",
+  data() {
+    return {
+      event: {
+        details: "",
+        edit: false
+      }
+    };
+  },
   methods: {
     getActiveDay() {
-      const activeDay = store.getActiveDay();
-      return activeDay;
+      return store.getActiveDay();
+    },
+    onEventSubmit() {
+      if (this.event.details.length !== 0) {
+        store.setEvent(this.event);
+      } else {
+        alert("Please enter event details..");
+      }
     }
   }
 };

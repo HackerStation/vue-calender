@@ -12,6 +12,13 @@ export const store = {
       }
     });
   },
+  setEvent(event) {
+    this.state.seedData.forEach(day => {
+      if (day.active) {
+        day.events.push(event);
+      }
+    });
+  },
   getActiveDay() {
     return this.state.seedData.filter(day => day.active)[0].fullTitle;
   }
